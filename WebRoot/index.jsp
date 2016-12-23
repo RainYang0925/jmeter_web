@@ -50,19 +50,19 @@
 			<div align="left">
 				<div class="inline">
 				<!-- radio--------------continue（改过的） -->
-					<input name="ThreadGroup.on_sample_error" type="radio" value="continue" checked="checked" />继续
+					<input name="radio" type="radio" value="continue" checked="checked" />继续
 				</div>
 				<div class="inline">
-					<input name="ThreadGroup.on_sample_error" type="radio" value="startnextloop" />启动下一个循环
+					<input name="radio" type="radio" value="startnextloop" />启动下一个循环
 				</div>
 				<div class="inline">
-					<input name="ThreadGroup.on_sample_error" type="radio" value="stopthread" />停止线程
+					<input name="radio" type="radio" value="stopthread" />停止线程
 				</div>
 				<div class="inline">
-					<input name="ThreadGroup.on_sample_error" type="radio" value="stoptest" />停止测试
+					<input name="radio" type="radio" value="stoptest" />停止测试
 				</div>
 				<div class="inline">
-					<input name="ThreadGroup.on_sample_error" type="radio" value="stoptestnow" />立即停止测试
+					<input name="radio" type="radio" value="stoptestnow" />立即停止测试
 				</div>
 			</div>
 			<div align="left">2、线程组属性：</div>
@@ -290,7 +290,7 @@
 				<b>测试数据写入新文件</b>
 			</div>
 			<div align="left">
-				新文件名<input type="text" name="newfilename" value="">
+				新文件名：<input type="text" name="newfilename" value="">
 			</div>
 			<div align="left">
 				<b>添加远程执行机IP地址</b>

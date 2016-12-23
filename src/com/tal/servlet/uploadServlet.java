@@ -20,6 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 public class uploadServlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6495305140683263217L;
+
+	/**
 	 * Constructor of the object.
 	 */
 	public uploadServlet() {
@@ -46,12 +51,12 @@ public class uploadServlet extends HttpServlet {
 		int MAX_SIZE = 102400 * 102400;
 		// 创建根路径的保存变量
 		String rootPath;
-		String filePath = null;
+		// String filePath = null;
 		// 声明文件读入类
 		DataInputStream in = null;
 		FileOutputStream fileOut = null;
 		// 取得客户端的网络地址
-		String remoteAddr = request.getRemoteAddr();
+		// String remoteAddr = request.getRemoteAddr();
 		// 获得服务器的名字
 		String serverName = request.getServerName();
 
@@ -59,7 +64,7 @@ public class uploadServlet extends HttpServlet {
 		String realPath = request.getRealPath(serverName);
 		realPath = realPath.substring(0, realPath.lastIndexOf("\\"));
 		// 创建文件的保存目录
-		rootPath = realPath + "\\upload\\";
+		rootPath = realPath + "\\WEB-INF\\jmx\\";
 		// 取得客户端上传的数据类型
 		String contentType = request.getContentType();
 		try {
@@ -94,7 +99,12 @@ public class uploadServlet extends HttpServlet {
 
 				System.out.println("上传的文件名：" + saveFile);
 				request.setAttribute("filePath", saveFile);
-				filePath = saveFile;
+				// 设置ip值为空，……
+				request.setAttribute("remote_ip1", null);
+				request.setAttribute("remote_ip2", null);
+				request.setAttribute("remote_ip3", null);
+				request.setAttribute("remote_ip4", null);
+				// filePath = saveFile;
 				int lastIndex = contentType.lastIndexOf("=");
 				// 取得数据的分隔字符串
 				String boundary = contentType.substring(lastIndex + 1,
@@ -108,19 +118,11 @@ public class uploadServlet extends HttpServlet {
 				pos = file.indexOf("\n", pos) + 1;
 				pos = file.indexOf("\n", pos) + 1;
 				int boundaryLocation = file.indexOf(boundary, pos) - 4;
-				// out.println(boundaryLocation);
 				// 取得文件数据的开始的位置
 				int startPos = ((file.substring(0, pos)).getBytes()).length;
-				// out.println(startPos);
 				// 取得文件数据的结束的位置
 				int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
-				// out.println(endPos);
 				// 检查上载文件是否存在
-				File checkFile = new File(fileName);
-				if (checkFile.exists()) {
-					// response.getWriter().println(
-					// "<p>" + saveFile + "文件已经存在.</p>");
-				}
 				// 检查上载文件的目录是否存在
 				File fileDir = new File(rootPath);
 				if (!fileDir.exists()) {
@@ -131,11 +133,8 @@ public class uploadServlet extends HttpServlet {
 				// 保存文件的数据
 				fileOut.write(dataBytes, startPos, (endPos - startPos));
 				fileOut.close();
-				// response.getWriter().println(saveFile + "文件成功上载.</p>");
 			} else {
-				String content = request.getContentType();
-				// response.getWriter().println(
-				// "<p>上传的数据类型不是multipart/form-data</p>");
+				// String content = request.getContentType();
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
@@ -143,10 +142,5 @@ public class uploadServlet extends HttpServlet {
 
 		request.getRequestDispatcher("/setParameter.jsp").forward(request,
 				response);// 转发
-		// response.sendRedirect(request.getContextPath()
-		// + "/setParameter.jsp?filePath=" + filePath);//重定向
-		// request.getRequestDispacther("/test.jsp").forword(request, response);
-		// getServletContext().getRequestDispatcher("/setParameter.jsp").forward(
-		// request, response);
 	}
 }

@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>jmeter模板</title>
+<title>JMeter Web化</title>
 </head>
 <body>
 	<div>
-		<form action="#" method="post">
+		<form action="${pageContext.request.contextPath }/startCmdServlet" method="post">
 			启动文件: <input type="text" name="filepath" value="${filePath }"><br>
 			<input name="radio" type="radio" value="false" />本地 <input
 				name="radio" type="radio" value="true" />远程<br> 添加远程机1：<input
