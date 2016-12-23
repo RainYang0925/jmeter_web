@@ -9,7 +9,6 @@
   </head>
   
   <body>
-	上传文件程序应用示例
 	<form action="uploadServlet" method="post"
 		enctype="multipart/form-data">
 		<%-- 类型enctype用multipart/form-data，这样可以把文件中的数据作为流式数据上传，不管是什么文件类型，均可上传。--%>

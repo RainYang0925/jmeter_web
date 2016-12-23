@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>JmeterWEB</display-name>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>uploadServlet</servlet-name>
-    <servlet-class>com.tal.servlet.uploadServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>createJmxServlet</servlet-name>
-    <servlet-class>com.tal.servlet.createJmxServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>startCmdServlet</servlet-name>
-    <servlet-class>com.tal.servlet.startCmdServlet</servlet-class>
-  </servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>JmeterWEB</display-name>
+	<!-- servlet声明 ……-->
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>uploadServlet</servlet-name>
+		<servlet-class>com.tal.servlet.uploadServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>createJmxServlet</servlet-name>
+		<servlet-class>com.tal.servlet.createJmxServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>startCmdServlet</servlet-name>
+		<servlet-class>com.tal.servlet.startCmdServlet</servlet-class>
+	</servlet>
 
-
-
-  <servlet-mapping>
-    <servlet-name>uploadServlet</servlet-name>
-    <url-pattern>/uploadServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>createJmxServlet</servlet-name>
-    <url-pattern>/createJmxServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>startCmdServlet</servlet-name>
-    <url-pattern>/startCmdServlet</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+	<!-- Servlet Maping配置文件 -->
+	<servlet-mapping>
+		<servlet-name>uploadServlet</servlet-name>
+		<url-pattern>/uploadServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createJmxServlet</servlet-name>
+		<url-pattern>/createJmxServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>startCmdServlet</servlet-name>
+		<url-pattern>/startCmdServlet</url-pattern>
+	</servlet-mapping>
+	<!--配置常见错误状态页  -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errorPage/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>505</error-code>
+		<location>/errorPage/505.jsp</location>
+	</error-page>
+	
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
