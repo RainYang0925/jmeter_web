@@ -52,8 +52,11 @@ public class startCmdServlet extends HttpServlet {
 		System.out.println("是否进行远程测试：" + isRemote);
 
 		try {
-			int state = Runtime.getRuntime().exec("./WEB-INF/data/ceshi.bat")
-					.waitFor();// 执行脚本文件
+			int state = Runtime
+					.getRuntime()
+					.exec("./WEB-INF/data/ceshi.bat " + remoteIp_1 + " "
+							+ remoteIp_2 + " " + remoteIp_3 + " " + remoteIp_4
+							+ " " + filePath + " " + isRemote).waitFor();// 执行脚本文件
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
