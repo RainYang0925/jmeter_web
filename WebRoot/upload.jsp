@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -11,9 +11,9 @@
   <body>
 	<form action="uploadServlet" method="post"
 		enctype="multipart/form-data">
-		<%-- ÀàÐÍenctypeÓÃmultipart/form-data£¬ÕâÑù¿ÉÒÔ°ÑÎÄ¼þÖÐµÄÊý¾Ý×÷ÎªÁ÷Ê½Êý¾ÝÉÏ´«£¬²»¹ÜÊÇÊ²Ã´ÎÄ¼þÀàÐÍ£¬¾ù¿ÉÉÏ´«¡£--%>
-		ÇëÑ¡ÔñÒªÉÏ´«µÄÎÄ¼þ<input type="file" name="upfile" size="50"> <input
-			type="submit" value="Ìá½»">
+		<%-- ç±»åž‹enctypeç”¨multipart/form-dataï¼Œè¿™æ ·å¯ä»¥æŠŠæ–‡ä»¶ä¸­çš„æ•°æ®ä½œä¸ºæµå¼æ•°æ®ä¸Šä¼ ï¼Œä¸ç®¡æ˜¯ä»€ä¹ˆæ–‡ä»¶ç±»åž‹ï¼Œå‡å¯ä¸Šä¼ ã€‚--%>
+		è¯·é€‰æ‹©è¦ä¸Šä¼ çš„æ–‡ä»¶<input type="file" name="upfile" size="50"> <input
+			type="submit" value="æäº¤">
 	</form>
 </body>
 </html>

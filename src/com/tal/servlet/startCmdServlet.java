@@ -8,12 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * µ÷ÓÃshellÎÄ¼ş£¬Ö´ĞĞ²âÊÔµÄservlet
+ * æ‰§è¡Œç›‘æœ¬æ–‡ä»¶çš„servlet
  * 
- * @author Îâº£·É
- * @d2016Äê12ÔÂ22ÈÕ
+ * @author å´æµ·é£
+ * @d2016å¹´12æœˆ27æ—¥
  */
 public class startCmdServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6670203831371945502L;
 
 	/**
 	 */
@@ -23,9 +28,6 @@ public class startCmdServlet extends HttpServlet {
 		this.doPost(request, response);
 	}
 
-	/**
-	 * Ö´ĞĞ½Å±¾ÎÄ¼ş£¬Éú³É²âÊÔ±¨¸æ£¬ÔÚÒ³ÃæÏÔÊ¾²âÊÔ±¨¸æ
-	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -39,7 +41,7 @@ public class startCmdServlet extends HttpServlet {
 		 */
 
 		/*
-		 * »ñÈ¡ÍøÒ³²ÎÊı
+		 * è·å–ç½‘é¡µå‚æ•°
 		 */
 		String remoteIp_1 = request.getParameter("slaveip1");
 		String remoteIp_2 = request.getParameter("slaveip2");
@@ -49,20 +51,23 @@ public class startCmdServlet extends HttpServlet {
 
 		String isRemote = request.getParameter("radio");
 
-		System.out.println("ÊÇ·ñ½øĞĞÔ¶³Ì²âÊÔ£º" + isRemote);
+		String path = this.getServletContext().getRealPath("/");
+		System.out.println("" + path);
 
 		try {
 			int state = Runtime
 					.getRuntime()
-					.exec("./WEB-INF/data/ceshi.bat " + remoteIp_1 + " "
+					.exec(path + "/WEB-INF/data/ceshi.bat " + remoteIp_1 + " "
 							+ remoteIp_2 + " " + remoteIp_3 + " " + remoteIp_4
-							+ " " + filePath + " " + isRemote).waitFor();// Ö´ĞĞ½Å±¾ÎÄ¼ş
+							+ " " + filePath + " " + isRemote).waitFor();
+			if (state == 0) {
+				System.out.println("è„šæœ¬æ­£å¸¸æ‰§è¡Œâ€¦â€¦");
+			} else {
+				System.out.println("è„šæœ¬æœªæ‰§è¡Œâ€¦â€¦");
+			}
+			response.sendRedirect("/output/output/index.html");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
-
-		if (isRemote.equals("true")) {
-			response.getWriter().write("Ö´ĞĞcmdÃüÁî£¬Éú³É²âÊÔ±¨¸æ£¡");
 		}
 
 	}

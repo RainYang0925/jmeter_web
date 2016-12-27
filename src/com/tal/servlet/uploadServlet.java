@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * ÊµÏÖÎÄ¼şÉÏ´«¹¦ÄÜµÄservlet
  * 
- * @author Îâº£·É
- * @d2016Äê12ÔÂ16ÈÕ
+ * @author å´æµ·é£
+ * @d2016å¹´12æœˆ27æ—¥
  */
-
 public class uploadServlet extends HttpServlet {
 
 	/**
@@ -39,78 +37,63 @@ public class uploadServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// request.setCharacterEncoding("utf-8");
-		// response.setHeader("content-type", "text/html;charset=UTF-8");
-		// response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
 
-		request.setCharacterEncoding("gbk");
-		response.setHeader("content-type", "text/html;charset=gbk");
-		response.setCharacterEncoding("gbk");
+		// request.setCharacterEncoding("gbk");
+		// response.setHeader("content-type", "text/html;charset=gbk");
+		// response.setCharacterEncoding("gbk");
 
-		// ¶¨ÒåÉÏÔØÎÄ¼şµÄ×î´ó×Ö½Ú
 		int MAX_SIZE = 102400 * 102400;
-		// ´´½¨¸ùÂ·¾¶µÄ±£´æ±äÁ¿
 		String rootPath;
 		// String filePath = null;
-		// ÉùÃ÷ÎÄ¼ş¶ÁÈëÀà
 		DataInputStream in = null;
 		FileOutputStream fileOut = null;
-		// È¡µÃ¿Í»§¶ËµÄÍøÂçµØÖ·
 		// String remoteAddr = request.getRemoteAddr();
-		// »ñµÃ·şÎñÆ÷µÄÃû×Ö
 		String serverName = request.getServerName();
 
-		// È¡µÃ»¥ÁªÍø³ÌĞòµÄ¾ø¶ÔµØÖ·
 		String realPath = request.getRealPath(serverName);
 		realPath = realPath.substring(0, realPath.lastIndexOf("\\"));
-		// ´´½¨ÎÄ¼şµÄ±£´æÄ¿Â¼
-		rootPath = realPath + "\\WEB-INF\\jmx\\";
-		// È¡µÃ¿Í»§¶ËÉÏ´«µÄÊı¾İÀàĞÍ
+		// rootPath = realPath + "\\WEB-INF\\jmx\\";
+		rootPath = "C:\\Developer\\ant\\jmeter\\jmx\\";
 		String contentType = request.getContentType();
 		try {
 			if (contentType.indexOf("multipart/form-data") >= 0) {
-				// ¶ÁÈëÉÏ´«µÄÊı¾İ
 				in = new DataInputStream(request.getInputStream());
 				int formDataLength = request.getContentLength();
 				if (formDataLength > MAX_SIZE) {
-					response.getWriter().println(
-							"<P>ÉÏ´«µÄÎÄ¼ş×Ö½ÚÊı²»¿ÉÒÔ³¬¹ı" + MAX_SIZE + "</p>");
+					response.getWriter().println("<P>æ–‡ä»¶è¿‡å¤§" + MAX_SIZE + "</p>");
 					return;
 				}
-				// ±£´æÉÏ´«ÎÄ¼şµÄÊı¾İ
 				byte dataBytes[] = new byte[formDataLength];
 				int byteRead = 0;
 				int totalBytesRead = 0;
-				// ÉÏ´«µÄÊı¾İ±£´æÔÚbyteÊı×é
 				while (totalBytesRead < formDataLength) {
 					byteRead = in.read(dataBytes, totalBytesRead,
 							formDataLength);
 					totalBytesRead += byteRead;
 				}
-				// ¸ù¾İbyteÊı×é´´½¨×Ö·û´®
 				String file = new String(dataBytes);
 				// out.println(file);
-				// È¡µÃÉÏ´«µÄÊı¾İµÄÎÄ¼şÃû
 				String saveFile = file
 						.substring(file.indexOf("filename=\"") + 10);
 				saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
 				saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1,
 						saveFile.indexOf("\""));
 
-				System.out.println("ÉÏ´«µÄÎÄ¼şÃû£º" + saveFile);
+				System.out.println("ä¸Šä¼ æ–‡ä»¶åï¼š" + saveFile);
 				request.setAttribute("filePath", saveFile);
-				// ÉèÖÃipÖµÎª¿Õ£¬¡­¡­
 				request.setAttribute("remote_ip1", null);
 				request.setAttribute("remote_ip2", null);
 				request.setAttribute("remote_ip3", null);
 				request.setAttribute("remote_ip4", null);
 				// filePath = saveFile;
 				int lastIndex = contentType.lastIndexOf("=");
-				// È¡µÃÊı¾İµÄ·Ö¸ô×Ö·û´®
 				String boundary = contentType.substring(lastIndex + 1,
 						contentType.length());
-				// ´´½¨±£´æÂ·¾¶µÄÎÄ¼şÃû
 				String fileName = rootPath + saveFile;
+				System.out.println(fileName);
 				// out.print(fileName);
 				int pos;
 				pos = file.indexOf("filename=\"");
@@ -118,19 +101,13 @@ public class uploadServlet extends HttpServlet {
 				pos = file.indexOf("\n", pos) + 1;
 				pos = file.indexOf("\n", pos) + 1;
 				int boundaryLocation = file.indexOf(boundary, pos) - 4;
-				// È¡µÃÎÄ¼şÊı¾İµÄ¿ªÊ¼µÄÎ»ÖÃ
 				int startPos = ((file.substring(0, pos)).getBytes()).length;
-				// È¡µÃÎÄ¼şÊı¾İµÄ½áÊøµÄÎ»ÖÃ
 				int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
-				// ¼ì²éÉÏÔØÎÄ¼şÊÇ·ñ´æÔÚ
-				// ¼ì²éÉÏÔØÎÄ¼şµÄÄ¿Â¼ÊÇ·ñ´æÔÚ
 				File fileDir = new File(rootPath);
 				if (!fileDir.exists()) {
 					fileDir.mkdirs();
 				}
-				// ´´½¨ÎÄ¼şµÄĞ´³öÀà
 				fileOut = new FileOutputStream(fileName);
-				// ±£´æÎÄ¼şµÄÊı¾İ
 				fileOut.write(dataBytes, startPos, (endPos - startPos));
 				fileOut.close();
 			} else {
@@ -141,6 +118,6 @@ public class uploadServlet extends HttpServlet {
 		}
 
 		request.getRequestDispatcher("/setParameter.jsp").forward(request,
-				response);// ×ª·¢
+				response);
 	}
 }

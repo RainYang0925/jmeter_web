@@ -21,12 +21,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * ÊµÏÖÉú³ÉjmxÎÄ¼şµÄ¹¦ÄÜ
  * 
- * @author Îâº£·É
- * @d2016Äê12ÔÂ16ÈÕ
+ * @author å´æµ·é£
+ * @d2016å¹´12æœˆ27æ—¥
  */
 public class createJmxServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7804956990760251237L;
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -46,8 +50,7 @@ public class createJmxServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// ÉèÖÃ±àÂë·½Ê½
+		// è®¾ç½®ç¼–ç æ–¹å¼
 		request.setCharacterEncoding("utf-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
@@ -57,7 +60,7 @@ public class createJmxServlet extends HttpServlet {
 		String s3 = request.getParameter("newfilename");
 		String s29 = request.getParameter("newresultname");
 		String s4 = request.getParameter("tpname");
-		String path = getServletContext().getRealPath("/");// »ñÈ¡web¸ùÂ·¾¶
+		String path = getServletContext().getRealPath("/");
 		String s5 = path + "\\WEB-INF\\jmx\\";
 		String s7 = ".jmx";
 		String s8 = ".jtl";
@@ -90,9 +93,9 @@ public class createJmxServlet extends HttpServlet {
 		String s36 = request.getParameter("radio_assertion");
 
 		String str = request.getParameter("param");
-		// ½«filePathÉèÖÃÖµ
+		// ï¿½ï¿½filePathï¿½ï¿½ï¿½ï¿½Öµ
 		request.setAttribute("filePath", s3);
-		// ÏòrequestÓòÖĞÉèÖÃÖµ
+		// ï¿½ï¿½requestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 		request.setAttribute("remote_ip1", s32);
 		request.setAttribute("remote_ip2", s33);
 		request.setAttribute("remote_ip3", s34);
@@ -153,7 +156,7 @@ public class createJmxServlet extends HttpServlet {
 		// System.out.println(thisName + "--------------" + thisValue);
 		// }
 		request.getRequestDispatcher("/setParameter.jsp").forward(request,
-				response);// ×ª·¢
+				response);// ×ªï¿½ï¿½
 	}
 
 	public String testchange(String s1, String s2, String s6, String s10,
@@ -163,16 +166,16 @@ public class createJmxServlet extends HttpServlet {
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_name, String[] str_value, String[] str_assertion)
 			throws Exception {
-		SAXReader sax = new SAXReader();// ´´½¨Ò»¸öSAXReader¶ÔÏó
-		String path = getServletContext().getRealPath("/");// ÏîÄ¿µÄÏà¶ÔÂ·¾¶
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ¸ù¾İÖ¸¶¨µÄÂ·¾¶´´½¨file¶ÔÏó
-		Document document = sax.read(xmlFile);// »ñÈ¡document¶ÔÏó,Èç¹ûÎÄµµÎŞ½Úµã£¬Ôò»áÅ×³öExceptionÌáÇ°½áÊø
-		Element root = document.getRootElement();// »ñÈ¡¸ù½Úµã
+		SAXReader sax = new SAXReader();// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SAXReaderï¿½ï¿½ï¿½ï¿½
+		String path = getServletContext().getRealPath("/");// ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fileï¿½ï¿½ï¿½ï¿½
+		Document document = sax.read(xmlFile);// ï¿½ï¿½È¡documentï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ş½Úµã£¬ï¿½ï¿½ï¿½ï¿½×³ï¿½Exceptionï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+		Element root = document.getRootElement();// ï¿½ï¿½È¡ï¿½ï¿½Úµï¿½
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
-		// 2.±éÀú¼¯ºÏ
+		// 2.ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < list1.size(); i++) {
-			// ´´½¨ÔªËØ¶ÔÏó
+			// ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¶ï¿½ï¿½ï¿½
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -387,7 +390,7 @@ public class createJmxServlet extends HttpServlet {
 			}
 		}
 
-		// Ôö¼Ó¶ÏÑÔ½Úµã
+		// ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½Ô½Úµï¿½
 
 		String xpath5 = "//ResponseAssertion[@testname]";
 		List<Element> list5 = document.selectNodes(xpath5);
@@ -410,15 +413,15 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ´´½¨Êä³öÁ÷
-		OutputFormat format = OutputFormat.createPrettyPrint(); // »ñÈ¡Êä³öµÄÖ¸¶¨¸ñÊ½
-		format.setEncoding("UTF-8");// ÉèÖÃ±àÂë £¬È·±£½âÎöµÄxmlÎªUTF-8¸ñÊ½
+				"UTF-8");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		OutputFormat format = OutputFormat.createPrettyPrint(); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ê½
+		format.setEncoding("UTF-8");// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xmlÎªUTF-8ï¿½ï¿½Ê½
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// Ö¸¶¨Êä³öÎÄ¼şÒÔ¼°¸ñÊ½
-		writer.write(document);// °ÑdocumentĞ´ÈëxmlFileÖ¸¶¨µÄÎÄ¼ş(¿ÉÒÔÎª±»½âÎöµÄÎÄ¼ş»òÕßĞÂ´´½¨µÄÎÄ¼ş)
+															// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ê½
+		writer.write(document);// ï¿½ï¿½documentĞ´ï¿½ï¿½xmlFileÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½)
 		writer.flush();
 		writer.close();
-		return "ÄãµÄ²ÎÊıÒÑ³É¹¦Ìá½»";
+		return "ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ñ³É¹ï¿½ï¿½á½»";
 	}
 
 	public String testchange1(String s1, String s2, String s6, String s10,
@@ -427,22 +430,22 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_assertion) throws Exception {
-		SAXReader sax = new SAXReader();// ´´½¨Ò»¸öSAXReader¶ÔÏó
+		SAXReader sax = new SAXReader();// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SAXReaderï¿½ï¿½ï¿½ï¿½
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ¸ù¾İÖ¸¶¨µÄÂ·¾¶´´½¨file¶ÔÏó
-		Document document = sax.read(xmlFile);// »ñÈ¡document¶ÔÏó,Èç¹ûÎÄµµÎŞ½Úµã£¬Ôò»áÅ×³öExceptionÌáÇ°½áÊø
-		Element root = document.getRootElement();// »ñÈ¡¸ù½Úµã
+		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fileï¿½ï¿½ï¿½ï¿½
+		Document document = sax.read(xmlFile);// ï¿½ï¿½È¡documentï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ş½Úµã£¬ï¿½ï¿½ï¿½ï¿½×³ï¿½Exceptionï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+		Element root = document.getRootElement();// ï¿½ï¿½È¡ï¿½ï¿½Úµï¿½
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ¸øÄ³¸ö½ÚµãÌí¼ÓÒ»¸öĞÖµÜ½Úµã
+		// ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÖµÜ½Úµï¿½
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.±éÀú¼¯ºÏ
+		// 2.ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < list1.size(); i++) {
-			// ´´½¨ÔªËØ¶ÔÏó
+			// ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¶ï¿½ï¿½ï¿½
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -589,7 +592,7 @@ public class createJmxServlet extends HttpServlet {
 
 		}
 
-		// Ôö¼Ó¶ÏÑÔ½Úµã
+		// ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½Ô½Úµï¿½
 
 		String xpath4 = "//ResponseAssertion[@testname]";
 		List<Element> list4 = document.selectNodes(xpath4);
@@ -611,15 +614,15 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ´´½¨Êä³öÁ÷
-		OutputFormat format = OutputFormat.createPrettyPrint(); // »ñÈ¡Êä³öµÄÖ¸¶¨¸ñÊ½
-		format.setEncoding("UTF-8");// ÉèÖÃ±àÂë £¬È·±£½âÎöµÄxmlÎªUTF-8¸ñÊ½
+				"UTF-8");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		OutputFormat format = OutputFormat.createPrettyPrint(); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ê½
+		format.setEncoding("UTF-8");// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xmlÎªUTF-8ï¿½ï¿½Ê½
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// Ö¸¶¨Êä³öÎÄ¼şÒÔ¼°¸ñÊ½
-		writer.write(document);// °ÑdocumentĞ´ÈëxmlFileÖ¸¶¨µÄÎÄ¼ş(¿ÉÒÔÎª±»½âÎöµÄÎÄ¼ş»òÕßĞÂ´´½¨µÄÎÄ¼ş)
+															// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ê½
+		writer.write(document);// ï¿½ï¿½documentĞ´ï¿½ï¿½xmlFileÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½)
 		writer.flush();
 		writer.close();
-		return "ÄãµÄ²ÎÊıÒÑ³É¹¦Ìá½»";
+		return "ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ñ³É¹ï¿½ï¿½á½»";
 	}
 
 	public String testchange2(String s1, String s2, String s6, String s10,
@@ -628,22 +631,22 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_name, String[] str_value) throws Exception {
-		SAXReader sax = new SAXReader();// ´´½¨Ò»¸öSAXReader¶ÔÏó
+		SAXReader sax = new SAXReader();// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SAXReaderï¿½ï¿½ï¿½ï¿½
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ¸ù¾İÖ¸¶¨µÄÂ·¾¶´´½¨file¶ÔÏó
-		Document document = sax.read(xmlFile);// »ñÈ¡document¶ÔÏó,Èç¹ûÎÄµµÎŞ½Úµã£¬Ôò»áÅ×³öExceptionÌáÇ°½áÊø
-		Element root = document.getRootElement();// »ñÈ¡¸ù½Úµã
+		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fileï¿½ï¿½ï¿½ï¿½
+		Document document = sax.read(xmlFile);// ï¿½ï¿½È¡documentï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ş½Úµã£¬ï¿½ï¿½ï¿½ï¿½×³ï¿½Exceptionï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+		Element root = document.getRootElement();// ï¿½ï¿½È¡ï¿½ï¿½Úµï¿½
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ¸øÄ³¸ö½ÚµãÌí¼ÓÒ»¸öĞÖµÜ½Úµã
+		// ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÖµÜ½Úµï¿½
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.±éÀú¼¯ºÏ
+		// 2.ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < list1.size(); i++) {
-			// ´´½¨ÔªËØ¶ÔÏó
+			// ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¶ï¿½ï¿½ï¿½
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -861,15 +864,15 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ´´½¨Êä³öÁ÷
-		OutputFormat format = OutputFormat.createPrettyPrint(); // »ñÈ¡Êä³öµÄÖ¸¶¨¸ñÊ½
-		format.setEncoding("UTF-8");// ÉèÖÃ±àÂë £¬È·±£½âÎöµÄxmlÎªUTF-8¸ñÊ½
+				"UTF-8");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		OutputFormat format = OutputFormat.createPrettyPrint(); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ê½
+		format.setEncoding("UTF-8");// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xmlÎªUTF-8ï¿½ï¿½Ê½
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// Ö¸¶¨Êä³öÎÄ¼şÒÔ¼°¸ñÊ½
-		writer.write(document);// °ÑdocumentĞ´ÈëxmlFileÖ¸¶¨µÄÎÄ¼ş(¿ÉÒÔÎª±»½âÎöµÄÎÄ¼ş»òÕßĞÂ´´½¨µÄÎÄ¼ş)
+															// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ê½
+		writer.write(document);// ï¿½ï¿½documentĞ´ï¿½ï¿½xmlFileÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½)
 		writer.flush();
 		writer.close();
-		return "ÄãµÄ²ÎÊıÒÑ³É¹¦Ìá½»";
+		return "ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ñ³É¹ï¿½ï¿½á½»";
 	}
 
 	public String testchange3(String s1, String s2, String s6, String s10,
@@ -878,22 +881,22 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30)
 			throws Exception {
-		SAXReader sax = new SAXReader();// ´´½¨Ò»¸öSAXReader¶ÔÏó
+		SAXReader sax = new SAXReader();// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SAXReaderï¿½ï¿½ï¿½ï¿½
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ¸ù¾İÖ¸¶¨µÄÂ·¾¶´´½¨file¶ÔÏó
-		Document document = sax.read(xmlFile);// »ñÈ¡document¶ÔÏó,Èç¹ûÎÄµµÎŞ½Úµã£¬Ôò»áÅ×³öExceptionÌáÇ°½áÊø
-		Element root = document.getRootElement();// »ñÈ¡¸ù½Úµã
+		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fileï¿½ï¿½ï¿½ï¿½
+		Document document = sax.read(xmlFile);// ï¿½ï¿½È¡documentï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ş½Úµã£¬ï¿½ï¿½ï¿½ï¿½×³ï¿½Exceptionï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+		Element root = document.getRootElement();// ï¿½ï¿½È¡ï¿½ï¿½Úµï¿½
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ¸øÄ³¸ö½ÚµãÌí¼ÓÒ»¸öĞÖµÜ½Úµã
+		// ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÖµÜ½Úµï¿½
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.±éÀú¼¯ºÏ
+		// 2.ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < list1.size(); i++) {
-			// ´´½¨ÔªËØ¶ÔÏó
+			// ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¶ï¿½ï¿½ï¿½
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -1041,15 +1044,15 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ´´½¨Êä³öÁ÷
-		OutputFormat format = OutputFormat.createPrettyPrint(); // »ñÈ¡Êä³öµÄÖ¸¶¨¸ñÊ½
-		format.setEncoding("UTF-8");// ÉèÖÃ±àÂë £¬È·±£½âÎöµÄxmlÎªUTF-8¸ñÊ½
+				"UTF-8");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		OutputFormat format = OutputFormat.createPrettyPrint(); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ê½
+		format.setEncoding("UTF-8");// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xmlÎªUTF-8ï¿½ï¿½Ê½
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// Ö¸¶¨Êä³öÎÄ¼şÒÔ¼°¸ñÊ½
-		writer.write(document);// °ÑdocumentĞ´ÈëxmlFileÖ¸¶¨µÄÎÄ¼ş(¿ÉÒÔÎª±»½âÎöµÄÎÄ¼ş»òÕßĞÂ´´½¨µÄÎÄ¼ş)
+															// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ê½
+		writer.write(document);// ï¿½ï¿½documentĞ´ï¿½ï¿½xmlFileÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½)
 		writer.flush();
 		writer.close();
-		return "ÄãµÄ²ÎÊıÒÑ³É¹¦Ìá½»";
+		return "ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ñ³É¹ï¿½ï¿½á½»";
 	}
 
 }
