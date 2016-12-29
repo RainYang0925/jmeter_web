@@ -20,6 +20,8 @@ import org.dom4j.io.XMLWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.tal.utils.PropertiesReadUtils;
+
 /**
  * 
  * @author 吴海飞
@@ -60,8 +62,9 @@ public class createJmxServlet extends HttpServlet {
 		String s3 = request.getParameter("newfilename");
 		String s29 = request.getParameter("newresultname");
 		String s4 = request.getParameter("tpname");
-		String path = getServletContext().getRealPath("/");
-		String s5 = path + "\\WEB-INF\\jmx\\";
+		// String path = getServletContext().getRealPath("/");
+		// String s5 = path + "\\WEB-INF\\jmx\\";
+		String s5 = PropertiesReadUtils.getString("uploadFilePath");
 		String s7 = ".jmx";
 		String s8 = ".jtl";
 		String s6 = s5 + s3;
@@ -93,9 +96,7 @@ public class createJmxServlet extends HttpServlet {
 		String s36 = request.getParameter("radio_assertion");
 
 		String str = request.getParameter("param");
-		// ��filePath����ֵ
 		request.setAttribute("filePath", s3);
-		// ��request��������ֵ
 		request.setAttribute("remote_ip1", s32);
 		request.setAttribute("remote_ip2", s33);
 		request.setAttribute("remote_ip3", s34);
@@ -146,17 +147,11 @@ public class createJmxServlet extends HttpServlet {
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			throw new RuntimeException();
+			// throw new RuntimeException();
 		}
 
-		// Enumeration<String> paraNames = request.getParameterNames();
-		// for (Enumeration<String> e = paraNames; e.hasMoreElements();) {
-		// String thisName = e.nextElement().toString();
-		// String thisValue = request.getParameter(thisName);
-		// System.out.println(thisName + "--------------" + thisValue);
-		// }
 		request.getRequestDispatcher("/setParameter.jsp").forward(request,
-				response);// ת��
+				response);
 	}
 
 	public String testchange(String s1, String s2, String s6, String s10,
@@ -166,16 +161,14 @@ public class createJmxServlet extends HttpServlet {
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_name, String[] str_value, String[] str_assertion)
 			throws Exception {
-		SAXReader sax = new SAXReader();// ����һ��SAXReader����
-		String path = getServletContext().getRealPath("/");// ��Ŀ�����·��
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ���ָ����·������file����
-		Document document = sax.read(xmlFile);// ��ȡdocument����,����ĵ��޽ڵ㣬����׳�Exception��ǰ����
-		Element root = document.getRootElement();// ��ȡ��ڵ�
+		SAXReader sax = new SAXReader();
+		String path = getServletContext().getRealPath("/");
+		File xmlFile = new File(path + "WEB-INF/templateXML/newfortest.xml");
+		Document document = sax.read(xmlFile);
+		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
-		// 2.�����
 		for (int i = 0; i < list1.size(); i++) {
-			// ����Ԫ�ض���
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -390,8 +383,6 @@ public class createJmxServlet extends HttpServlet {
 			}
 		}
 
-		// ���Ӷ��Խڵ�
-
 		String xpath5 = "//ResponseAssertion[@testname]";
 		List<Element> list5 = document.selectNodes(xpath5);
 		for (int n = 0; n < list5.size(); n++) {
@@ -413,12 +404,12 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ���������
-		OutputFormat format = OutputFormat.createPrettyPrint(); // ��ȡ�����ָ����ʽ
-		format.setEncoding("UTF-8");// ���ñ��� ��ȷ��������xmlΪUTF-8��ʽ
+				"UTF-8");
+		OutputFormat format = OutputFormat.createPrettyPrint(); //
+		format.setEncoding("UTF-8");//
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// ָ������ļ��Լ���ʽ
-		writer.write(document);// ��documentд��xmlFileָ�����ļ�(����Ϊ���������ļ������´������ļ�)
+
+		writer.write(document);
 		writer.flush();
 		writer.close();
 		return "��Ĳ����ѳɹ��ύ";
@@ -430,11 +421,11 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_assertion) throws Exception {
-		SAXReader sax = new SAXReader();// ����һ��SAXReader����
+		SAXReader sax = new SAXReader();
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ���ָ����·������file����
-		Document document = sax.read(xmlFile);// ��ȡdocument����,����ĵ��޽ڵ㣬����׳�Exception��ǰ����
-		Element root = document.getRootElement();// ��ȡ��ڵ�
+		File xmlFile = new File(path + "WEB-INF/templateXML/newfortest.xml");
+		Document document = sax.read(xmlFile);
+		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
@@ -631,11 +622,11 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30,
 			String[] str_name, String[] str_value) throws Exception {
-		SAXReader sax = new SAXReader();// ����һ��SAXReader����
+		SAXReader sax = new SAXReader();
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ���ָ����·������file����
-		Document document = sax.read(xmlFile);// ��ȡdocument����,����ĵ��޽ڵ㣬����׳�Exception��ǰ����
-		Element root = document.getRootElement();// ��ȡ��ڵ�
+		File xmlFile = new File(path + "WEB-INF/templateXML/newfortest.xml");
+		Document document = sax.read(xmlFile);
+		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
@@ -881,11 +872,11 @@ public class createJmxServlet extends HttpServlet {
 			String s21, String s22, String s23, String s24, String s25,
 			String s26, String s27, String s28, String s29, String[] s30)
 			throws Exception {
-		SAXReader sax = new SAXReader();// ����һ��SAXReader����
+		SAXReader sax = new SAXReader();
 		String path = getServletContext().getRealPath("/");
-		File xmlFile = new File(path + "\\WEB-INF\\templateXML\\newfortest.xml");// ���ָ����·������file����
-		Document document = sax.read(xmlFile);// ��ȡdocument����,����ĵ��޽ڵ㣬����׳�Exception��ǰ����
-		Element root = document.getRootElement();// ��ȡ��ڵ�
+		File xmlFile = new File(path + "WEB-INF/templateXML/newfortest.xml");
+		Document document = sax.read(xmlFile);
+		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();

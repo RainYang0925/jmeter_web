@@ -36,8 +36,7 @@ public class PropertiesReadUtils {
 	 * @return 参数的value
 	 */
 	public static String getString(String param) {
-		return getInstance().getPropertiesString("/recordConf.properties",
-				param);
+		return getInstance().getPropertiesString("/config.properties", param);
 	}
 
 	/**

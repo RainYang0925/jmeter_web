@@ -3,11 +3,12 @@ package cm.tal.test;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 
+import com.tal.utils.PropertiesReadUtils;
+
 public class TestMain {
 	public static void main(String[] args) throws Exception {
-		// String[] cmd = { "./cmd.sh", "-c", "$PATH" };
+		String[] cmd = { "./cmd.sh", "-c", "$PATH" };
 		Process pcs = Runtime.getRuntime().exec("./cmd.sh '$PATH'");
-		// Èô²»¼ÓÕâÏÂÃæµÄ´úÂëÒ²µ÷²»³É¹¦shell½Å±¾
 		InputStreamReader ir = new InputStreamReader(pcs.getInputStream());
 		LineNumberReader input = new LineNumberReader(ir);
 		String line = null;
@@ -20,6 +21,8 @@ public class TestMain {
 		if (null != ir) {
 			ir.close();
 		}
-		int extValue = pcs.waitFor();// ·µ»ØÂë 0 ±íÊ¾Õı³£ÍË³ö 1±íÊ¾Òì³£ÍË³ö
+		int extValue = pcs.waitFor();//
+		System.out.println("ä¸Šä¼ æ–‡ä»¶è·¯å¾„ï¼š"
+				+ PropertiesReadUtils.getString("uploadFilePath"));
 	}
 }

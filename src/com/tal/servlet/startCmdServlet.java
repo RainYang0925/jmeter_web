@@ -51,21 +51,34 @@ public class startCmdServlet extends HttpServlet {
 
 		String isRemote = request.getParameter("radio");
 
-		String path = this.getServletContext().getRealPath("/");
-		System.out.println("" + path);
-
+		// String path = this.getServletContext().getRealPath("/");
+		// System.out.println("" + path);
+		// "/bin/sh " +
+		// String exePath = PropertiesReadUtils.getString("antExePath");
+		String[] cmd = {
+				"/bin/sh",
+				"-c",
+				"ant -buildfile /home/jmeter/script/build.xml " + "-DIPvalue1="
+						+ remoteIp_1 + " -DIPvalue2=" + remoteIp_2
+						+ " -DIPvalue3=" + remoteIp_3 + " -DIPvalue4="
+						+ remoteIp_4 + " -Dfilename=" + filePath + " -Dremote="
+						+ isRemote };
 		try {
-			int state = Runtime
-					.getRuntime()
-					.exec(path + "/WEB-INF/data/ceshi.bat " + remoteIp_1 + " "
-							+ remoteIp_2 + " " + remoteIp_3 + " " + remoteIp_4
-							+ " " + filePath + " " + isRemote).waitFor();
+			// int state = Runtime
+			// .getRuntime()
+			// .exec("/resources/ant.sh" + " " + remoteIp_1 + " "
+			// + remoteIp_2 + " " + remoteIp_3 + " " + remoteIp_4
+			// + " " + filePath + " " + isRemote).waitFor();
+			int state = Runtime.getRuntime().exec(cmd).waitFor();
 			if (state == 0) {
 				System.out.println("脚本正常执行……");
+				response.sendRedirect("/output/output/index.html");
 			} else {
 				System.out.println("脚本未执行……");
+				request.getRequestDispatcher("/errorPage/shError.jsp").forward(
+						request, response);
 			}
-			response.sendRedirect("/output/output/index.html");
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

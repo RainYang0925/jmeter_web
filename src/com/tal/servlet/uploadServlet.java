@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tal.utils.PropertiesReadUtils;
+
 /**
  * 
  * @author 吴海飞
@@ -51,12 +53,12 @@ public class uploadServlet extends HttpServlet {
 		DataInputStream in = null;
 		FileOutputStream fileOut = null;
 		// String remoteAddr = request.getRemoteAddr();
-		String serverName = request.getServerName();
+		// String serverName = request.getServerName();
 
-		String realPath = request.getRealPath(serverName);
-		realPath = realPath.substring(0, realPath.lastIndexOf("\\"));
+		// String realPath = request.getRealPath(serverName);
+		// realPath = realPath.substring(0, realPath.lastIndexOf("\\"));
 		// rootPath = realPath + "\\WEB-INF\\jmx\\";
-		rootPath = "C:\\Developer\\ant\\jmeter\\jmx\\";
+		rootPath = PropertiesReadUtils.getString("uploadFilePath");
 		String contentType = request.getContentType();
 		try {
 			if (contentType.indexOf("multipart/form-data") >= 0) {
