@@ -3,6 +3,8 @@ package cm.tal.test;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 
+import org.junit.Test;
+
 import com.tal.utils.PropertiesReadUtils;
 
 public class TestMain {
@@ -24,5 +26,13 @@ public class TestMain {
 		int extValue = pcs.waitFor();//
 		System.out.println("上传文件路径："
 				+ PropertiesReadUtils.getString("uploadFilePath"));
+	}
+
+	@Test
+	public void test01() {
+		String str = "{" + "\"param\":" + "]" + "}";
+		StringBuilder sb = new StringBuilder(str);
+		sb.insert(9, "[");
+		System.out.println("json字符串：" + sb.toString());
 	}
 }

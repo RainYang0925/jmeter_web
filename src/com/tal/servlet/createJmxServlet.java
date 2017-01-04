@@ -14,12 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.tal.utils.CheckUtils;
 import com.tal.utils.PropertiesReadUtils;
 
 /**
@@ -102,21 +105,35 @@ public class createJmxServlet extends HttpServlet {
 
 		JSONObject obj;
 		try {
-			obj = new JSONObject(str);
+
+			if (!CheckUtils.getInstance().checkJson(str)) {
+				StringBuilder sb = new StringBuilder(str);
+				sb.insert(9, "[");
+				str = sb.toString();
+				System.out.println("json字符串：" + str);
+			}
+
+			obj = JSON.parseObject(str);// new JSONObject(str);
 			JSONArray data = obj.getJSONArray("param");
-			String[] str_name = new String[data.length()];
-			String[] str_value = new String[data.length()];
-			for (int i = 0; i < data.length(); i++) {
+			String[] str_name = new String[data.size()];
+			String[] str_value = new String[data.size()];
+			for (int i = 0; i < data.size(); i++) {
 				JSONObject data1 = data.getJSONObject(i);
 				str_name[i] = data1.getString("name");
 				str_value[i] = data1.getString("value");
 			}
 
 			String str1 = request.getParameter("param1");
-			JSONObject obj1 = new JSONObject(str1);
+			if (!CheckUtils.getInstance().checkJson(str1)) {
+				StringBuilder sb = new StringBuilder(str1);
+				sb.insert(9, "[");
+				str1 = sb.toString();
+				System.out.println("json字符串1：" + str1);
+			}
+			JSONObject obj1 = JSON.parseObject(str1);// new JSONObject(str1);
 			JSONArray data1 = obj1.getJSONArray("param");
-			String[] str_assertion = new String[data1.length()];
-			for (int i = 0; i < data1.length(); i++) {
+			String[] str_assertion = new String[data1.size()];
+			for (int i = 0; i < data1.size(); i++) {
 				JSONObject data2 = data1.getJSONObject(i);
 				str_assertion[i] = data2.getString("assertion");
 			}
@@ -164,9 +181,9 @@ public class createJmxServlet extends HttpServlet {
 		Document document = sax.read(xmlFile);
 		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
-		List<Element> list1 = document.selectNodes(xpath1);
+		List<Node> list1 = document.selectNodes(xpath1);
 		for (int i = 0; i < list1.size(); i++) {
-			Element student = list1.get(i);
+			Element student = (Element) list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
 				student.setText(s1);
@@ -252,9 +269,9 @@ public class createJmxServlet extends HttpServlet {
 			}
 		}
 		String xpath2 = "//elementProp[@name]";
-		List<Element> list2 = document.selectNodes(xpath2);
+		List<Node> list2 = document.selectNodes(xpath2);
 		for (int j = 0; j < list2.size(); j++) {
-			Element student1 = list2.get(j);
+			Element student1 = (Element) list2.get(j);
 			switch (student1.attributeValue("name")) {
 			case "HTTPsampler.Arguments":
 				student1.remove(student1.selectSingleNode("collectionProp"));
@@ -288,9 +305,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath3 = "//boolProp[@name]";
-		List<Element> list3 = document.selectNodes(xpath3);
+		List<Node> list3 = document.selectNodes(xpath3);
 		for (int k = 0; k < list3.size(); k++) {
-			Element student2 = list3.get(k);
+			Element student2 = (Element) list3.get(k);
 			switch (student2.attributeValue("name")) {
 			case "LoopController.continue_forever":
 				student2.setText("false");
@@ -343,9 +360,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath4 = "//ResponseAssertion[@testname]";
-		List<Element> list4 = document.selectNodes(xpath4);
+		List<Node> list4 = document.selectNodes(xpath4);
 		for (int n = 0; n < list4.size(); n++) {
-			Element student4 = list4.get(n);
+			Element student4 = (Element) list4.get(n);
 			if (student4.attributeValue("testname")
 					.equals("Response Assertion")) {
 				Element stu4 = student4.getParent().addElement("HeaderManager");
@@ -378,9 +395,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath5 = "//ResponseAssertion[@testname]";
-		List<Element> list5 = document.selectNodes(xpath5);
+		List<Node> list5 = document.selectNodes(xpath5);
 		for (int n = 0; n < list5.size(); n++) {
-			Element student5 = list5.get(n);
+			Element student5 = (Element) list5.get(n);
 			if (student5.attributeValue("testname")
 					.equals("Response Assertion")) {
 				student5.remove(student5.selectSingleNode("collectionProp"));
@@ -427,14 +444,14 @@ public class createJmxServlet extends HttpServlet {
 		Document document = sax.read(xmlFile);
 		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
-		List<Element> list1 = document.selectNodes(xpath1);
+		List<Node> list1 = document.selectNodes(xpath1);
 		// return list.size();
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
 		for (int i = 0; i < list1.size(); i++) {
-			Element student = list1.get(i);
+			Element student = (Element) list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
 				student.setText(s1);
@@ -523,9 +540,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath3 = "//boolProp[@name]";
-		List<Element> list3 = document.selectNodes(xpath3);
+		List<Node> list3 = document.selectNodes(xpath3);
 		for (int k = 0; k < list3.size(); k++) {
-			Element student2 = list3.get(k);
+			Element student2 = (Element) list3.get(k);
 			switch (student2.attributeValue("name")) {
 			case "LoopController.continue_forever":
 				student2.setText("false");
@@ -583,9 +600,9 @@ public class createJmxServlet extends HttpServlet {
 		// ���Ӷ��Խڵ�
 
 		String xpath4 = "//ResponseAssertion[@testname]";
-		List<Element> list4 = document.selectNodes(xpath4);
+		List<Node> list4 = document.selectNodes(xpath4);
 		for (int n = 0; n < list4.size(); n++) {
-			Element student4 = list4.get(n);
+			Element student4 = (Element) list4.get(n);
 			if (student4.attributeValue("testname")
 					.equals("Response Assertion")) {
 				student4.remove(student4.selectSingleNode("collectionProp"));
@@ -629,14 +646,14 @@ public class createJmxServlet extends HttpServlet {
 		Document document = sax.read(xmlFile);
 		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
-		List<Element> list1 = document.selectNodes(xpath1);
+		List<Node> list1 = document.selectNodes(xpath1);
 		// return list.size();
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
 		for (int i = 0; i < list1.size(); i++) {
-			Element student = list1.get(i);
+			Element student = (Element) list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
 				student.setText(s1);
@@ -723,9 +740,9 @@ public class createJmxServlet extends HttpServlet {
 
 		}
 		String xpath2 = "//elementProp[@name]";
-		List<Element> list2 = document.selectNodes(xpath2);
+		List<Node> list2 = document.selectNodes(xpath2);
 		for (int j = 0; j < list2.size(); j++) {
-			Element student1 = list2.get(j);
+			Element student1 = (Element) list2.get(j);
 			switch (student1.attributeValue("name")) {
 			case "HTTPsampler.Arguments":
 				student1.remove(student1.selectSingleNode("collectionProp"));
@@ -760,9 +777,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath3 = "//boolProp[@name]";
-		List<Element> list3 = document.selectNodes(xpath3);
+		List<Node> list3 = document.selectNodes(xpath3);
 		for (int k = 0; k < list3.size(); k++) {
-			Element student2 = list3.get(k);
+			Element student2 = (Element) list3.get(k);
 			switch (student2.attributeValue("name")) {
 			case "LoopController.continue_forever":
 				student2.setText("false");
@@ -818,9 +835,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath4 = "//ResponseAssertion[@testname]";
-		List<Element> list4 = document.selectNodes(xpath4);
+		List<Node> list4 = document.selectNodes(xpath4);
 		for (int n = 0; n < list4.size(); n++) {
-			Element student4 = list4.get(n);
+			Element student4 = (Element) list4.get(n);
 			if (student4.attributeValue("testname")
 					.equals("Response Assertion")) {
 				Element stu4 = student4.getParent().addElement("HeaderManager");
@@ -880,17 +897,14 @@ public class createJmxServlet extends HttpServlet {
 		Document document = sax.read(xmlFile);
 		Element root = document.getRootElement();
 		String xpath1 = "//stringProp[@name]";
-		List<Element> list1 = document.selectNodes(xpath1);
+		List<Node> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ��ĳ���ڵ����һ���ֵܽڵ�
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.�����
 		for (int i = 0; i < list1.size(); i++) {
-			// ����Ԫ�ض���
-			Element student = list1.get(i);
+			Element student = (Element) list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
 				student.setText(s1);
@@ -979,9 +993,9 @@ public class createJmxServlet extends HttpServlet {
 		}
 
 		String xpath3 = "//boolProp[@name]";
-		List<Element> list3 = document.selectNodes(xpath3);
+		List<Node> list3 = document.selectNodes(xpath3);
 		for (int k = 0; k < list3.size(); k++) {
-			Element student2 = list3.get(k);
+			Element student2 = (Element) list3.get(k);
 			switch (student2.attributeValue("name")) {
 			case "LoopController.continue_forever":
 				student2.setText("false");
