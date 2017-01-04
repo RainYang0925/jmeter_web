@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>脚本未执行……</h3>
+<h3>脚本执行错误或未执行……</h3>
 </body>
 </html>

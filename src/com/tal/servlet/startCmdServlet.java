@@ -35,12 +35,6 @@ public class startCmdServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		/*
-		 * $path1=$_POST["slaveip1"]; $path2=$_POST["slaveip2"];
-		 * $path3=$_POST["slaveip3"]; $path4=$_POST["slaveip4"];
-		 * $path6=$_POST["filepath"]; $path7=$_POST["radio"];
-		 */
-
-		/*
 		 * 获取网页参数
 		 */
 		String remoteIp_1 = request.getParameter("slaveip1");
@@ -64,11 +58,6 @@ public class startCmdServlet extends HttpServlet {
 						+ remoteIp_4 + " -Dfilename=" + filePath + " -Dremote="
 						+ isRemote };
 		try {
-			// int state = Runtime
-			// .getRuntime()
-			// .exec("/resources/ant.sh" + " " + remoteIp_1 + " "
-			// + remoteIp_2 + " " + remoteIp_3 + " " + remoteIp_4
-			// + " " + filePath + " " + isRemote).waitFor();
 			int state = Runtime.getRuntime().exec(cmd).waitFor();
 			if (state == 0) {
 				System.out.println("脚本正常执行……");

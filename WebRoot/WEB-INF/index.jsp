@@ -385,7 +385,7 @@ function addrow_assertion(tableid){
 function deleterow(tableid){
     var table=document.getElementById(tableid);
     var i=table.rows.length-1;
-    if(i!=1)table.deleteRow(i);
+    if(i!=0)table.deleteRow(i);
   }
 
 function TableToJson_post(tableid) { //tableid是你要转化的表的表名，是一个字符串，如"example" 

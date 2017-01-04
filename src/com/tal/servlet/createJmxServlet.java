@@ -62,8 +62,6 @@ public class createJmxServlet extends HttpServlet {
 		String s3 = request.getParameter("newfilename");
 		String s29 = request.getParameter("newresultname");
 		String s4 = request.getParameter("tpname");
-		// String path = getServletContext().getRealPath("/");
-		// String s5 = path + "\\WEB-INF\\jmx\\";
 		String s5 = PropertiesReadUtils.getString("uploadFilePath");
 		String s7 = ".jmx";
 		String s8 = ".jtl";
@@ -147,7 +145,6 @@ public class createJmxServlet extends HttpServlet {
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			// throw new RuntimeException();
 		}
 
 		request.getRequestDispatcher("/setParameter.jsp").forward(request,
@@ -331,7 +328,6 @@ public class createJmxServlet extends HttpServlet {
 				for (int l = 0; l < s30.length; l++) {
 					if (s30[l].equals("che5"))
 						student2.setText("true");
-
 				}
 				break;
 			case "HTTPSampler.BROWSER_COMPATIBLE_MULTIPART":
@@ -339,13 +335,11 @@ public class createJmxServlet extends HttpServlet {
 				for (int l = 0; l < s30.length; l++) {
 					if (s30[l].equals("che6"))
 						student2.setText("true");
-
 				}
 				break;
 			default:
 				break;
 			}
-
 		}
 
 		String xpath4 = "//ResponseAssertion[@testname]";
@@ -402,9 +396,15 @@ public class createJmxServlet extends HttpServlet {
 			}
 
 		}
-
-		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
+		File file = new File(s6);
+		if (file.exists()) {// 判断文件是否存在，如果存在则创建文件
+			System.out.println("不存在");
+			System.out.println(file.createNewFile());
+			file.createNewFile();
+		}
+		Writer osWrite = new OutputStreamWriter(new FileOutputStream(file),
 				"UTF-8");
+
 		OutputFormat format = OutputFormat.createPrettyPrint(); //
 		format.setEncoding("UTF-8");//
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
@@ -429,14 +429,11 @@ public class createJmxServlet extends HttpServlet {
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ��ĳ���ڵ����һ���ֵܽڵ�
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.�����
 		for (int i = 0; i < list1.size(); i++) {
-			// ����Ԫ�ض���
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -603,14 +600,18 @@ public class createJmxServlet extends HttpServlet {
 			}
 
 		}
-
-		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ���������
-		OutputFormat format = OutputFormat.createPrettyPrint(); // ��ȡ�����ָ����ʽ
-		format.setEncoding("UTF-8");// ���ñ��� ��ȷ��������xmlΪUTF-8��ʽ
+		File file = new File(s6);
+		if (file.exists()) {// 判断文件是否存在，如果存在则创建文件将原文件覆盖
+			System.out.println("不存在");
+			System.out.println(file.createNewFile());
+			file.createNewFile();
+		}
+		Writer osWrite = new OutputStreamWriter(new FileOutputStream(file),
+				"UTF-8");
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		format.setEncoding("UTF-8");
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// ָ������ļ��Լ���ʽ
-		writer.write(document);// ��documentд��xmlFileָ�����ļ�(����Ϊ���������ļ������´������ļ�)
+		writer.write(document);
 		writer.flush();
 		writer.close();
 		return "��Ĳ����ѳɹ��ύ";
@@ -630,14 +631,11 @@ public class createJmxServlet extends HttpServlet {
 		String xpath1 = "//stringProp[@name]";
 		List<Element> list1 = document.selectNodes(xpath1);
 		// return list.size();
-		// ��ĳ���ڵ����һ���ֵܽڵ�
 		/*
 		 * Element stu=student.getParent().addElement("stringProp");
 		 * stu.addAttribute("number", "ITCAST_0003"); stu.addText("java");
 		 */
-		// 2.�����
 		for (int i = 0; i < list1.size(); i++) {
-			// ����Ԫ�ض���
 			Element student = list1.get(i);
 			switch (student.attributeValue("name")) {
 			case "ThreadGroup.num_threads":
@@ -853,14 +851,18 @@ public class createJmxServlet extends HttpServlet {
 				Element stu5 = student4.getParent().addElement("hashTree");
 			}
 		}
-
-		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ���������
-		OutputFormat format = OutputFormat.createPrettyPrint(); // ��ȡ�����ָ����ʽ
-		format.setEncoding("UTF-8");// ���ñ��� ��ȷ��������xmlΪUTF-8��ʽ
+		File file = new File(s6);
+		if (file.exists()) {// 判断文件是否存在，如果存在则创建文件将原文件覆盖
+			System.out.println("不存在");
+			System.out.println(file.createNewFile());
+			file.createNewFile();
+		}
+		Writer osWrite = new OutputStreamWriter(new FileOutputStream(file),
+				"UTF-8");
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		format.setEncoding("UTF-8");
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// ָ������ļ��Լ���ʽ
-		writer.write(document);// ��documentд��xmlFileָ�����ļ�(����Ϊ���������ļ������´������ļ�)
+		writer.write(document);
 		writer.flush();
 		writer.close();
 		return "��Ĳ����ѳɹ��ύ";
@@ -1033,14 +1035,18 @@ public class createJmxServlet extends HttpServlet {
 			}
 
 		}
-
-		Writer osWrite = new OutputStreamWriter(new FileOutputStream(s6),
-				"UTF-8");// ���������
-		OutputFormat format = OutputFormat.createPrettyPrint(); // ��ȡ�����ָ����ʽ
-		format.setEncoding("UTF-8");// ���ñ��� ��ȷ��������xmlΪUTF-8��ʽ
+		File file = new File(s6);
+		if (file.exists()) {// 判断文件是否存在，如果存在则创建文件将原文件覆盖
+			System.out.println("不存在");
+			System.out.println(file.createNewFile());
+			file.createNewFile();
+		}
+		Writer osWrite = new OutputStreamWriter(new FileOutputStream(file),
+				"UTF-8");
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		format.setEncoding("UTF-8");
 		XMLWriter writer = new XMLWriter(osWrite, format);// XMLWriter
-															// ָ������ļ��Լ���ʽ
-		writer.write(document);// ��documentд��xmlFileָ�����ļ�(����Ϊ���������ļ������´������ļ�)
+		writer.write(document);
 		writer.flush();
 		writer.close();
 		return "��Ĳ����ѳɹ��ύ";
