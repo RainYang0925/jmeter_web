@@ -64,8 +64,8 @@ public class startCmdServlet extends HttpServlet {
 				response.sendRedirect("/output/output/index.html");
 			} else {
 				System.out.println("脚本未执行……");
-				request.getRequestDispatcher("/errorPage/shError.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/viewPage/errorPage/shError.jsp")
+						.forward(request, response);
 			}
 
 		} catch (InterruptedException e) {

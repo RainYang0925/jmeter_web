@@ -40,11 +40,11 @@
 	<!--配置常见错误状态页  -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/errorPage/404.jsp</location>
+		<location>/viewPage/errorPage/404.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>505</error-code>
-		<location>/errorPage/505.jsp</location>
+		<location>/viewPage/errorPage/505.jsp</location>
 	</error-page>
 	
 	<welcome-file-list>
