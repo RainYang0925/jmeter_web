@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="js/jquery.js"></script>
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../../js/jquery.js"></script>
 
 <script type="text/javascript">
 $(function(){	
@@ -38,11 +38,11 @@ $(function(){
         
     <dd>
     <div class="title">
-    <span><img src="images/leftico01.png" /></span>测试计划
+    <span><img src="../../images/leftico01.png" /></span>测试计划
     </div>
     	<ul class="menuson">
-        <li><cite></cite><a href="index.html" target="rightFrame">首页模版</a><i></i></li>
-        <li class="active"><cite></cite><a href="right.html" target="rightFrame">数据列表</a><i></i></li>
+        <li><cite></cite><a href="index.jsp" target="rightFrame">HTTP模板</a><i></i></li>
+        <li><cite></cite><a href="right.html" target="rightFrame">文件上传</a><i></i></li>
         <li><cite></cite><a href="imgtable.html" target="rightFrame">图片数据表</a><i></i></li>
         <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
         </ul>    
@@ -51,7 +51,7 @@ $(function(){
     
     <dd>
     <div class="title">
-    <span><img src="images/leftico02.png" /></span>其他设置
+    <span><img src="../../images/leftico02.png" /></span>其他设置
     </div>
     <ul class="menuson">
         <li><cite></cite><a href="#">编辑内容</a><i></i></li>
@@ -61,7 +61,7 @@ $(function(){
     </dd> 
     
     
-    <dd><div class="title"><span><img src="images/leftico03.png" /></span>编辑器</div>
+    <dd><div class="title"><span><img src="../../images/leftico03.png" /></span>编辑器</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>
         <li><cite></cite><a href="#">常用资料</a><i></i></li>
@@ -71,7 +71,7 @@ $(function(){
     </dd>  
     
     
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>日期管理</div>
+    <dd><div class="title"><span><img src="../../images/leftico04.png" /></span>日期管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>
         <li><cite></cite><a href="#">常用资料</a><i></i></li>
