@@ -5,6 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>WEB测试平台</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 .inline {
 	display: inline
@@ -15,25 +22,25 @@ b {
 	color: blue;
 }
 
-html {
-	text-align: center;
-}
-
 body {
-	width: 778px;
+	width:900px;
 	margin: 0 auto;
 	text-align: left;
 }
+
 </style>
 </head>
 <body>
-	<div style="height:1200px;" id="d3">
+	<div style="height:1500px;" id="d3">
 		<form action="${pageContext.request.contextPath }/createJmxServlet"
 			method="post">
-			<div align="left" style="margin-top: 10%;">
+			<div align="center" style="margin-top: 5%;color: blue;font-size: 25px;font-family: '微软雅黑';">
+				<h3>HTTP模板</h3>
+			</div>
+			<div align="left" style="margin-top: 2%;">
 				<b>线程组</b>
 			</div>
-			<div align="left">1、在取样器错误之后要执行的操作:</div>
+			<div align="left" style="margin-top: 2%;">1、在取样器错误之后要执行的操作:</div>
 			<div align="left">
 				<div class="inline">
 					<!-- radio--------------continue（改过的） -->
@@ -73,10 +80,10 @@ body {
 				</div>
 			</div>
 
-			<div align="left">
+			<div align="left" style="margin-top:1%">
 				<b>HTTP</b>
 			</div>
-			<div align="left">1、web服务器:</div>
+			<div align="left"style="margin-top: 2%;">1、web服务器:</div>
 			<div align="left">
 				<div class="inline">
 					服务器名称或IP: <input type="text" name="HTTPSampler.domain"
@@ -180,10 +187,10 @@ body {
 				</div>
 			</div>
 
-			<div align="left">
+			<div align="left" style="margin-top:1%">
 				<b>HTTP响应断言</b>
 			</div>
-			<div align="left">1、apply to:</div>
+			<div align="left" style="margin-top: 2%;">1、apply to:</div>
 			<div align="left">
 				<div class="inline">
 					<input name="radio2" type="radio" value="all" />Main sample and
@@ -273,16 +280,16 @@ body {
 				</div>
 			</div>
 
-			<div align="left">
+			<div align="left" style="margin-top:1%">
 				<b>测试数据写入新文件</b>
 			</div>
-			<div align="left">
+			<div align="left" style="margin-top: 2%;">
 				新文件名：<input type="text" name="newfilename" value="" />
 			</div>
-			<div align="left">
+			<div align="left" style="margin-top:1%">
 				<b>添加远程执行机IP地址</b>
 			</div>
-			<div align="left">
+			<div align="left" style="margin-top: 2%;">
 				<div align="left">
 					远程执行机1<input type="text" name="slave1" value="null" />
 				</div>

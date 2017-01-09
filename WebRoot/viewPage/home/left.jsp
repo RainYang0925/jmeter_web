@@ -42,8 +42,7 @@ $(function(){
     </div>
     	<ul class="menuson">
         <li><cite></cite><a href="index.jsp" target="rightFrame">HTTP模板</a><i></i></li>
-        <li><cite></cite><a href="right.html" target="rightFrame">文件上传</a><i></i></li>
-        <li><cite></cite><a href="imgtable.html" target="rightFrame">图片数据表</a><i></i></li>
+        <li><cite></cite><a href="../textPlan/upload.jsp" target="rightFrame">文件上传</a><i></i></li>
         <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
         </ul>    
     </dd>
