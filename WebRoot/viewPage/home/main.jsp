@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>WEB测试平台</title>
 </head>
 <frameset rows="88,*" cols="*" frameborder="no" border="0"
 	framespacing="0">

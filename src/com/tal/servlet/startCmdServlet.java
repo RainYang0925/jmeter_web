@@ -45,6 +45,8 @@ public class startCmdServlet extends HttpServlet {
 
 		String isRemote = request.getParameter("radio");
 
+		System.out.println("开始执行脚本");
+
 		// String path = this.getServletContext().getRealPath("/");
 		// System.out.println("" + path);
 		// "/bin/sh " +
