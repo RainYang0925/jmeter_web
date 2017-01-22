@@ -87,7 +87,7 @@ body {
 			<div align="left">
 				<div class="inline">
 					服务器名称或IP: <input type="text" name="HTTPSampler.domain"
-						value="www.100tal.com" />
+						value="www.baidu.com" />
 				</div>
 				<div class="inline">
 					端口号: <input type="text" name="HTTPSampler.port" value="" />

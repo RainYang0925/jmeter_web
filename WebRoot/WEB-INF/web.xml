@@ -23,6 +23,13 @@
 		<servlet-name>startCmdServlet</servlet-name>
 		<servlet-class>com.tal.servlet.startCmdServlet</servlet-class>
 	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>createResponseHtml</servlet-name>
+    <servlet-class>com.tal.servlet.createResponseHtml</servlet-class>
+  </servlet>
+
 
 	<!-- Servlet Maping配置文件 -->
 	<servlet-mapping>
@@ -37,6 +44,10 @@
 		<servlet-name>startCmdServlet</servlet-name>
 		<url-pattern>/startCmdServlet</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>createResponseHtml</servlet-name>
+    <url-pattern>/createResponseHtml</url-pattern>
+  </servlet-mapping>
 	<!--配置常见错误状态页  -->
 	<error-page>
 		<error-code>404</error-code>
