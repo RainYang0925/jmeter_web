@@ -75,7 +75,6 @@
 			<testplans dir="/home/jmeter/userdata" includes="${filename}" />
 			<property name="jmeter.save.saveservice.output_format" value="xml"/>
 		</jmeter>
-        
     </target>
 	
 	<target name="reportTemplate">  
